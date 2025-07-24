@@ -26,6 +26,8 @@ void fast_io() {
   cin.tie(0);
 }
 
+#pragma region Debugging
+
 #ifdef DEBUG
 #define dbg(...) cerr << "[" << #__VA_ARGS__ << "]: ", debug_out(__VA_ARGS__)
 #else
@@ -34,6 +36,7 @@ void fast_io() {
 
 void debug_out() { cerr << endl; }
 
+// vector
 template <typename T>
 void debug_out(const vector<T>& v, size_t n = SIZE_MAX) {
   cerr << "[";
@@ -47,6 +50,35 @@ void debug_out(const vector<T>& v, size_t n = SIZE_MAX) {
   cerr << endl;
 }
 
+// set
+template <typename T>
+void debug_out(const set<T>& s) {
+  cerr << "{";
+  auto it = s.begin();
+  while (it != s.end()) {
+    cerr << *it;
+    ++it;
+    if (it != s.end()) cerr << ", ";
+  }
+  cerr << "}";
+  cerr << endl;
+}
+
+// map
+template <typename K, typename V>
+void debug_out(const map<K, V>& m) {
+  cerr << "{";
+  auto it = m.begin();
+  while (it != m.end()) {
+    cerr << it->first << ": " << it->second;
+    ++it;
+    if (it != m.end()) cerr << ", ";
+  }
+  cerr << "}";
+  cerr << endl;
+}
+
+// generic + variadic fallback
 template <typename T, typename... Args>
 void debug_out(T x, Args... args) {
   cerr << x;
@@ -54,10 +86,7 @@ void debug_out(T x, Args... args) {
   debug_out(args...);
 }
 
-ll gcd(ll a, ll b) {
-  if (!b) return a;
-  return gcd(b, a % b);
-}
+#pragma endregion
 
 int main() {
   fast_io();
@@ -66,12 +95,9 @@ int main() {
   // cin >> t;
 
   while (t--) {
-    
   }
 
   return 0;
 }
 
-// g++ main.cpp -o main && ./main
-// g++ -DDEBUG main.cpp -o main && ./main
 // g++ main.cpp -DDEBUG -o main && ./main < input.txt > output.txt
