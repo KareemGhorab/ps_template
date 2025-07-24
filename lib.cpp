@@ -59,14 +59,25 @@ ll gcd(ll a, ll b) {
 
 ll lcm(ll a, ll b) { return mul(a, divide(b, gcd(a, b))); }
 
+ll npr(int n, int r) {
+  if (r < 0 || r > n) return 0;
+  return divide(fact[n], fact[n - r]);
+}
+
 ll ncr(int n, int r) {
   if (r < 0 || r > n) return 0;
   return divide(fact[n], mul(fact[r], fact[n - r]));
 }
 
-ll npr(int n, int r) {
-  if (r < 0 || r > n) return 0;
-  return divide(fact[n], fact[n - r]);
+// For non-overflowing values
+ll ncr(ll n, ll r) {
+  r = min(r, n - r);
+  ll res = 1;
+  for (ll i = 1; i <= r; i++) {
+    res *= n - r + i;
+    res /= i;
+  }
+  return res;
 }
 
 #pragma endregion
