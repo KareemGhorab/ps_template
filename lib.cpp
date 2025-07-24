@@ -21,10 +21,7 @@ const ll LINF = 1e18;
 const ll MOD = 1e9 + 7;
 const int N = 1e6;
 
-ll gcd(ll a, ll b) {
-  if (!b) return a;
-  return gcd(b, a % b);
-}
+#pragma region numberTheory
 
 ll mul(ll a, ll b) { return ((a % MOD) * (b % MOD)) % MOD; }
 
@@ -55,6 +52,21 @@ void preCompFact() {
   }
 }
 
-ll ncr(int n, int r) { return divide(fact[n], mul(fact[r], fact[sub(n, r)])); }
+ll gcd(ll a, ll b) {
+  if (!b) return a;
+  return gcd(b, a % b);
+}
 
-ll npr(int n, int r) { return divide(fact[n], fact[sub(n, r)]); }
+ll lcm(ll a, ll b) { return mul(a, divide(b, gcd(a, b))); }
+
+ll ncr(int n, int r) {
+  if (r < 0 || r > n) return 0;
+  return divide(fact[n], mul(fact[r], fact[n - r]));
+}
+
+ll npr(int n, int r) {
+  if (r < 0 || r > n) return 0;
+  return divide(fact[n], fact[n - r]);
+}
+
+#pragma endregion
