@@ -13,19 +13,6 @@ typedef pair<ll, ll> pll;
 #define MP make_pair
 #define all(x) (x).begin(), (x).end()
 
-int dx[] = {-1, 0, 1, 0};
-int dy[] = {0, 1, 0, -1};
-
-const int INF = 1e9 + 5;
-const ll LINF = 1e18;
-const ll MOD = 1e9 + 7;
-const int N = 1e6;
-
-void fast_io() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-}
-
 #pragma region Debugging
 
 #ifdef DEBUG
@@ -78,6 +65,19 @@ void debug_out(const map<K, V>& m) {
   cerr << endl;
 }
 
+template <typename K, typename V, typename T>
+void debug_out(const map<K, V, T>& m) {
+  cerr << "{";
+  auto it = m.begin();
+  while (it != m.end()) {
+    cerr << it->first << ": " << it->second;
+    ++it;
+    if (it != m.end()) cerr << ", ";
+  }
+  cerr << "}";
+  cerr << endl;
+}
+
 // generic + variadic fallback
 template <typename T, typename... Args>
 void debug_out(T x, Args... args) {
@@ -87,6 +87,19 @@ void debug_out(T x, Args... args) {
 }
 
 #pragma endregion
+
+void fast_io() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+}
+
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, 1, 0, -1};
+
+const int INF = 1e9 + 5;
+const ll LINF = 1e18;
+const ll MOD = 1e9 + 7;
+const int N = 1e6;
 
 int main() {
   fast_io();
