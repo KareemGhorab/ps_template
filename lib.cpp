@@ -30,7 +30,7 @@ ll mul(ll a, ll b) { return ((a % MOD) * (b % MOD)) % MOD; }
 
 ll add(ll a, ll b) { return ((a % MOD) + (b % MOD)) % MOD; }
 
-ll sub(ll a, ll b) { return ((a % MOD) - (b % MOD)) % MOD; }
+ll sub(ll a, ll b) { return ((a % MOD - b % MOD + MOD) % MOD); }
 
 ll fpow(ll base, ll power) {
   ll res = 1;
