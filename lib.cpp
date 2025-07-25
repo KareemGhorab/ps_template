@@ -12,6 +12,7 @@ typedef pair<ll, ll> pll;
 #define PB push_back
 #define MP make_pair
 #define all(x) (x).begin(), (x).end()
+#define nl << '\n'
 
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, 1, 0, -1};

@@ -12,6 +12,7 @@ typedef pair<ll, ll> pll;
 #define PB push_back
 #define MP make_pair
 #define all(x) (x).begin(), (x).end()
+#define nl << '\n'
 
 #pragma region Debugging
 
@@ -108,7 +109,7 @@ int main() {
   // cin >> t;
 
   while (t--) {
-  }
+    }
 
   return 0;
 }
