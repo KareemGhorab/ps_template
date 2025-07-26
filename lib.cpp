@@ -21,6 +21,7 @@ const int INF = 1e9 + 5;
 const ll LINF = 1e18;
 const ll MOD = 1e9 + 7;
 const int N = 1e6;
+const double EPS = 1e-9;
 
 #pragma region numberTheory
 
