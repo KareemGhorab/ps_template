@@ -109,9 +109,10 @@ int main() {
   // cin >> t;
 
   while (t--) {
-    }
+  }
 
   return 0;
 }
 
 // g++ main.cpp -DDEBUG -o main && ./main < input.txt > output.txt
+// g++ main.cpp -DDEBUG -std=c++17 -o main && ./main < input.txt > output.txt
