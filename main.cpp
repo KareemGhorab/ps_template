@@ -4,6 +4,8 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
+typedef vector<vector<int>> vvi;
+typedef vector<bool> vb;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
