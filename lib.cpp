@@ -96,4 +96,28 @@ ll ncr(ll n, ll r) {
   return res;
 }
 
+ll compPhi(ll n) {
+  ll result = n;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) {
+      while (n % i == 0) n /= i;
+      result -= result / i;
+    }
+  }
+  if (n > 1) result -= result / n;
+  return result;
+}
+
+vll phi(N + 1);
+
+void preCompPhi() {
+  for (int i = 0; i <= N; i++) phi[i] = i;
+
+  for (int i = 2; i <= N; i++) {
+    if (phi[i] == i) {
+      for (int j = i; j <= N; j += i) phi[j] -= phi[j] / i;
+    }
+  }
+}
+
 #pragma endregion
