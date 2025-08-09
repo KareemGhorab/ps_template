@@ -4,7 +4,10 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
+typedef vector<vector<int>> vvi;
+typedef vector<bool> vb;
 typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vpii;
 typedef pair<ll, ll> pll;
 
 #define F first
@@ -59,6 +62,19 @@ ll gcd(ll a, ll b) {
   return gcd(b, a % b);
 }
 
+ll gcd(ll a, ll b, ll& x, ll& y) {
+  if (b == 0) {
+    x = 1;
+    y = 0;
+    return a;
+  }
+  ll x1, y1;
+  ll d = gcd(b, a % b, x1, y1);
+  x = y1;
+  y = x1 - y1 * (a / b);
+  return d;
+}
+
 ll lcm(ll a, ll b) { return mul(a, divide(b, gcd(a, b))); }
 
 ll npr(int n, int r) {
@@ -80,6 +96,30 @@ ll ncr(ll n, ll r) {
     res /= i;
   }
   return res;
+}
+
+ll compPhi(ll n) {
+  ll result = n;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) {
+      while (n % i == 0) n /= i;
+      result -= result / i;
+    }
+  }
+  if (n > 1) result -= result / n;
+  return result;
+}
+
+vll phi(N + 1);
+
+void preCompPhi() {
+  for (int i = 0; i <= N; i++) phi[i] = i;
+
+  for (int i = 2; i <= N; i++) {
+    if (phi[i] == i) {
+      for (int j = i; j <= N; j += i) phi[j] -= phi[j] / i;
+    }
+  }
 }
 
 #pragma endregion
