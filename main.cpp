@@ -30,6 +30,7 @@ typedef vector<ll> vll;
 typedef vector<vector<int>> vvi;
 typedef vector<bool> vb;
 typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vpii;
 typedef pair<ll, ll> pll;
 
 #define F first
