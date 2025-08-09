@@ -27,7 +27,10 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
+typedef vector<vector<int>> vvi;
+typedef vector<bool> vb;
 typedef pair<int, int> pii;
+typedef vector<pair<int, int>> vpii;
 typedef pair<ll, ll> pll;
 
 #define F first
@@ -127,6 +130,9 @@ const int N = 1e6;
 
 int main() {
   fast_io();
+
+  // freopen("input.txt", "r", stdin);
+  // freopen("output.txt", "w", stdout);
 
   int t = 1;
   // cin >> t;
