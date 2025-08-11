@@ -67,9 +67,6 @@ const double EPS = 1e-9;
 int main() {
   fast_io();
 
-  // freopen("input.txt", "r", stdin);
-  // freopen("output.txt", "w", stdout);
-
   int t = 1;
   // cin >> t;
 
