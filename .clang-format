@@ -1,2 +1,5 @@
-BasedOnStyle: Google
 BreakBeforeBraces: Attach
+BasedOnStyle: LLVM
+IndentWidth: 4
+AlignAfterOpenBracket: DontAlign
+ContinuationIndentWidth: 4
