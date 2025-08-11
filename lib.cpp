@@ -1,105 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vll;
-typedef vector<vector<int>> vvi;
-typedef vector<bool> vb;
-typedef pair<int, int> pii;
-typedef vector<pair<int, int>> vpii;
-typedef pair<ll, ll> pll;
-
-#define F first
-#define S second
-#define PB push_back
-#define MP make_pair
-#define all(x) (x).begin(), (x).end()
-#define nl << '\n'
-
-int dx[] = {-1, 0, 1, 0};
-int dy[] = {0, 1, 0, -1};
-
-const int INF = 1e9 + 5;
-const ll LINF = 1e18;
-const ll MOD = 1e9 + 7;
-const int N = 1e6;
-const double EPS = 1e-9;
-
 #pragma region numberTheory
 
-ll mul(ll a, ll b) { return ((a % MOD) * (b % MOD)) % MOD; }
+int mul(int a, int b, int m) { return ((a % m) * (b % m)) % m; }
 
-ll add(ll a, ll b) { return ((a % MOD) + (b % MOD)) % MOD; }
+int add(int a, int b, int m) { return ((a % m) + (b % m)) % m; }
 
-ll sub(ll a, ll b) { return ((a % MOD - b % MOD + MOD) % MOD); }
+int sub(int a, int b, int m) { return ((a % m - b % m + m) % m); }
 
-ll fpow(ll base, ll power) {
-  ll res = 1;
+int fpow(int base, int power, int m) {
+  int res = 1;
   while (power) {
-    if (power & 1) res = mul(res, base);
+    if (power & 1) res = mul(res, base, m);
     power >>= 1;
-    base = mul(base, base);
+    base = mul(base, base, m);
   }
   return res;
 }
 
-ll modInv(ll x) { return fpow(x, MOD - 2); }
+int modInv(int x, int m) { return fpow(x, m - 2, m); }
 
-ll divide(ll a, ll b) { return mul(a, modInv(b)); }
+int divide(int a, int b, int m) { return mul(a, modInv(b, m), m); }
 
-vll fact(N + 1);
-
-void preCompFact() {
-  fact[0] = 1;
-  for (int i = 1; i <= N; i++) {
-    fact[i] = mul(fact[i - 1], i);
-  }
-}
-
-ll gcd(ll a, ll b) {
+int gcd(int a, int b) {
   if (!b) return a;
   return gcd(b, a % b);
 }
 
-ll gcd(ll a, ll b, ll& x, ll& y) {
+int gcd(int a, int b, int& x, int& y) {
   if (b == 0) {
     x = 1;
     y = 0;
     return a;
   }
-  ll x1, y1;
-  ll d = gcd(b, a % b, x1, y1);
+  int x1, y1;
+  int d = gcd(b, a % b, x1, y1);
   x = y1;
   y = x1 - y1 * (a / b);
   return d;
 }
 
-ll lcm(ll a, ll b) { return mul(a, divide(b, gcd(a, b))); }
+int lcm(int a, int b, int m) { return mul(a, divide(b, gcd(a, b), m), m); }
 
-ll npr(int n, int r) {
+int npr(int n, int r, int m, vector<int>& fact) {
   if (r < 0 || r > n) return 0;
-  return divide(fact[n], fact[n - r]);
+  return divide(fact[n], fact[n - r], m);
 }
 
-ll ncr(int n, int r) {
+int ncr(int n, int r, int m, vector<int>& fact) {
   if (r < 0 || r > n) return 0;
-  return divide(fact[n], mul(fact[r], fact[n - r]));
+  return divide(fact[n], mul(fact[r], fact[n - r], m), m);
 }
 
 // For non-overflowing values
-ll ncr(ll n, ll r) {
+int ncr(int n, int r) {
   r = min(r, n - r);
-  ll res = 1;
-  for (ll i = 1; i <= r; i++) {
+  int res = 1;
+  for (int i = 1; i <= r; i++) {
     res *= n - r + i;
     res /= i;
   }
   return res;
 }
 
-ll compPhi(ll n) {
-  ll result = n;
+int phi(int n) {
+  int result = n;
   for (int i = 2; i * i <= n; i++) {
     if (n % i == 0) {
       while (n % i == 0) n /= i;
@@ -110,14 +76,12 @@ ll compPhi(ll n) {
   return result;
 }
 
-vll phi(N + 1);
+void preCompPhi(int n, vector<int>& phi) {
+  for (int i = 0; i <= n; i++) phi[i] = i;
 
-void preCompPhi() {
-  for (int i = 0; i <= N; i++) phi[i] = i;
-
-  for (int i = 2; i <= N; i++) {
+  for (int i = 2; i <= n; i++) {
     if (phi[i] == i) {
-      for (int j = i; j <= N; j += i) phi[j] -= phi[j] / i;
+      for (int j = i; j <= n; j += i) phi[j] -= phi[j] / i;
     }
   }
 }
