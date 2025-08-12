@@ -37,10 +37,10 @@ typedef vector<vector<char>> vvc;
 
 void debug_out() { cerr << endl; }
 
-template <typename T, typename... Args>
-void debug_out(T x, Args... args) {
+template <typename T, typename... Args> void debug_out(T x, Args... args) {
   cerr << x;
-  if (sizeof...(args)) cerr << ", ";
+  if (sizeof...(args))
+    cerr << ", ";
   debug_out(args...);
 }
 
