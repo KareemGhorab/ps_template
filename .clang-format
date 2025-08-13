@@ -1,5 +1,5 @@
 BreakBeforeBraces: Attach
 BasedOnStyle: LLVM
-IndentWidth: 4
+IndentWidth: 2
 AlignAfterOpenBracket: DontAlign
-ContinuationIndentWidth: 4
+ContinuationIndentWidth: 2
