@@ -3,27 +3,7 @@
 using namespace std;
 
 typedef long long ll;
-typedef vector<ll> vll;
-typedef vector<vll> vvll;
-typedef pair<ll, ll> pll;
-typedef vector<pll> vpll;
-typedef vector<vpll> vvpll;
 
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-typedef vector<vpii> vvpii;
-
-typedef vector<bool> vb;
-typedef vector<vector<bool>> vvb;
-
-typedef vector<char> vc;
-typedef vector<vector<char>> vvc;
-
-#define F first
-#define S second
-#define PB push_back
 #define all(x) (x).begin(), (x).end()
 #define nl << '\n'
 
@@ -58,8 +38,6 @@ void fast_io() {
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, 1, 0, -1};
 
-const int INF = 1e9 + 5;
-const ll LINF = 1e18;
 const ll MOD = 1e9 + 7;
 const int N = 1e6;
 const double EPS = 1e-9;

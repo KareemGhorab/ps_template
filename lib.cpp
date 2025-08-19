@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma region numberTheory
+#pragma region NumberTheory
 
 int mul(int a, int b, int m) { return ((a % m) * (b % m)) % m; }
 
@@ -12,7 +12,8 @@ int sub(int a, int b, int m) { return ((a % m - b % m + m) % m); }
 int fpow(int base, int power, int m) {
   int res = 1;
   while (power) {
-    if (power & 1) res = mul(res, base, m);
+    if (power & 1)
+      res = mul(res, base, m);
     power >>= 1;
     base = mul(base, base, m);
   }
@@ -24,11 +25,12 @@ int modInv(int x, int m) { return fpow(x, m - 2, m); }
 int divide(int a, int b, int m) { return mul(a, modInv(b, m), m); }
 
 int gcd(int a, int b) {
-  if (!b) return a;
+  if (!b)
+    return a;
   return gcd(b, a % b);
 }
 
-int gcd(int a, int b, int& x, int& y) {
+int gcd(int a, int b, int &x, int &y) {
   if (b == 0) {
     x = 1;
     y = 0;
@@ -43,13 +45,15 @@ int gcd(int a, int b, int& x, int& y) {
 
 int lcm(int a, int b, int m) { return mul(a, divide(b, gcd(a, b), m), m); }
 
-int npr(int n, int r, int m, vector<int>& fact) {
-  if (r < 0 || r > n) return 0;
+int npr(int n, int r, int m, vector<int> &fact) {
+  if (r < 0 || r > n)
+    return 0;
   return divide(fact[n], fact[n - r], m);
 }
 
-int ncr(int n, int r, int m, vector<int>& fact) {
-  if (r < 0 || r > n) return 0;
+int ncr(int n, int r, int m, vector<int> &fact) {
+  if (r < 0 || r > n)
+    return 0;
   return divide(fact[n], mul(fact[r], fact[n - r], m), m);
 }
 
@@ -68,22 +72,61 @@ int phi(int n) {
   int result = n;
   for (int i = 2; i * i <= n; i++) {
     if (n % i == 0) {
-      while (n % i == 0) n /= i;
+      while (n % i == 0)
+        n /= i;
       result -= result / i;
     }
   }
-  if (n > 1) result -= result / n;
+  if (n > 1)
+    result -= result / n;
   return result;
 }
 
-void preCompPhi(int n, vector<int>& phi) {
-  for (int i = 0; i <= n; i++) phi[i] = i;
+void preCompPhi(int n, vector<int> &phi) {
+  for (int i = 0; i <= n; i++)
+    phi[i] = i;
 
   for (int i = 2; i <= n; i++) {
     if (phi[i] == i) {
-      for (int j = i; j <= n; j += i) phi[j] -= phi[j] / i;
+      for (int j = i; j <= n; j += i)
+        phi[j] -= phi[j] / i;
     }
   }
+}
+
+#pragma endregion
+
+#pragma region DataStructures
+
+// Sparse Table
+
+void preCompLog(int n, vector<int> &lg) {
+  lg.assign(n, 0);
+  for (int i = 2; i <= n; i++)
+    lg[i] = lg[i / 2] + 1;
+}
+
+vector<vector<int>> buildSparseTable(vector<int> &arr, vector<int> &lg) {
+  int n = arr.size();
+  int p = lg[n];
+  
+  vector<vector<int>> st(p, vector<int>(n));
+  copy(arr.begin(), arr.end(), st[0]);
+
+  for (int k = 1; k < p; k++) {
+    for (int i = 0; i + (1 << k) <= n; i++) {
+      st[k][i] = min(st[k - 1][i], st[k - 1][i + (1 << (k - 1))]);
+    }
+  }
+
+  return st;
+}
+
+int rmq(int l, int r, vector<vector<int>> &st, vector<int> &lg) {
+  int k = lg[r - l + 1];
+  
+  // or any other overlapping-friendly function
+  return min(st[k][l], st[k][r - (1 << k) + 1]);
 }
 
 #pragma endregion
